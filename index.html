@@ -1,0 +1,1604 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeCloudFacile - Solutions Cloud Simplifiées</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #d7802a;
+            --primary-dark: #c4871e;
+            --primary-light: #fff8e8;
+            --secondary-color: #faf9f8;
+            --text-dark: #333;
+            --text-medium: #555;
+            --text-light: #777;
+            --white: #ffffff;
+            --gray-light: #faf8f5;
+            --gray-border: #eaeaea;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 10px 25px rgba(0, 0, 0, 0.12);
+            --radius: 10px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--white);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 10px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .logo img.iconNavBar {
+            width: 50px;
+            height: auto;
+        }
+
+        .logo-icon {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: var(--radius);
+            transition: var(--transition);
+        }
+
+        .nav-cta:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--primary-light) 0%, rgba(255,255,255,1) 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="%232a5bd7" opacity="0.03"/></svg>');
+            background-size: cover;
+            z-index: 0;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 160px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .hero-text h1 {
+            font-size: 3.8rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .hero-text h1 span {
+            color: var(--primary-color);
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            color: var(--text-medium);
+            
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .promoBanner{
+            margin-top: 20px;
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 20px 25px;
+            border-radius: 15px 15px 15px 0px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .promoBanner:hover {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-3px);
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cloud-visual {
+            width: 100%;
+            max-width: 400px;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cloud-icon {
+            font-size: 8rem;
+            color: var(--primary-color);
+            opacity: 0.8;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background-color: var(--gray-light);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: var(--text-medium);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background-color: var(--white);
+            border-radius: var(--radius);
+            padding: 35px 25px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background-color: var(--primary-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: var(--primary-color);
+            font-size: 1.8rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        .feature-card p {
+            color: var(--text-medium);
+        }
+
+        /* Articles Section */
+        .articles {
+            padding: 80px 0;
+        }
+
+        .articles-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .article-card {
+            background-color: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .article-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .article-image {
+            height: 180px;
+            background-color: var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 3rem;
+        }
+
+        .article-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .article-category {
+            display: inline-block;
+            background-color: var(--primary-light);
+            color: var(--primary-color);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            align-self: flex-start;
+        }
+
+        .article-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .article-content p {
+            color: var(--text-medium);
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            padding-top: 15px;
+            border-top: 1px solid var(--gray-border);
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 60px 0;
+            background-color: var(--primary-color);
+            color: var(--white);
+            margin-top: 20px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 80px 0;
+            background-color: var(--gray-light);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background-color: var(--white);
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .testimonial-quote {
+            font-size: 3rem;
+            color: var(--primary-light);
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            line-height: 1;
+        }
+
+        .testimonial-content {
+            margin-bottom: 20px;
+            font-style: italic;
+            color: var(--text-medium);
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .testimonial-info h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .testimonial-info p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 80px 0;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background-color: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--gray-border);
+        }
+
+        .faq-question {
+            padding: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--white);
+            transition: var(--transition);
+        }
+
+        .faq-question:hover {
+            background-color: var(--primary-light);
+        }
+
+        .faq-question.active {
+            background-color: var(--primary-light);
+            color: var(--primary-color);
+        }
+
+        .faq-icon {
+            transition: var(--transition);
+        }
+
+        .faq-question.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .faq-answer.active {
+            padding: 0 20px 20px;
+            max-height: 500px;
+        }
+
+        /* Certification Section */
+        .certification {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--primary-light) 0%, rgba(255,255,255,1) 100%);
+        }
+
+        .certification-cta {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        /* Courses Selection Section */
+        .courses-selection {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+
+        .courses-cta {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        /* Learning Ecosystem Section */
+        .learning-ecosystem {
+            padding: 80px 0;
+            background-color: var(--gray-light);
+        }
+
+        .ecosystem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .ecosystem-card {
+            background-color: var(--white);
+            border-radius: var(--radius);
+            padding: 35px 25px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .ecosystem-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .ecosystem-icon {
+            width: 70px;
+            height: 70px;
+            background-color: var(--primary-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: var(--primary-color);
+            font-size: 1.8rem;
+        }
+
+        .ecosystem-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        .ecosystem-card p {
+            color: var(--text-medium);
+            line-height: 1.6;
+        }
+
+        /* Events Section */
+        .events {
+            padding: 80px 0;
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .events-card {
+            background-color: var(--white);
+            border-radius: var(--radius);
+            padding: 40px 30px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .events-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .events-icon {
+            width: 80px;
+            height: 80px;
+            background-color: var(--primary-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            color: var(--primary-color);
+            font-size: 2rem;
+        }
+
+        .events-card h3 {
+            font-size: 1.4rem;
+            color: var(--text-dark);
+            margin: 0;
+        }
+
+        .events-card p {
+            color: var(--text-medium);
+            line-height: 1.7;
+            flex-grow: 1;
+        }
+
+        .events-card .btn {
+            align-self: center;
+        }
+
+        .btn-large {
+            padding: 16px 40px;
+            font-size: 1.1rem;
+        }
+
+        .btn-sm {
+            padding: 10px 20px;
+            font-size: 0.95rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .cta-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .btn-white {
+            background-color: var(--white);
+            color: var(--primary-color);
+        }
+
+        .btn-white:hover {
+            background-color: var(--gray-light);
+            transform: translateY(-3px);
+        }
+
+        .btn-outline-white {
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-outline-white:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        /* Newsletter */
+        .newsletter {
+            padding: 60px 0;
+            background-color: var(--primary-light);
+            text-align: center;
+        }
+
+        .newsletter-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .newsletter h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        .newsletter p {
+            color: var(--text-medium);
+            margin-bottom: 30px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+            gap: 10px;
+        }
+
+        .newsletter-input {
+            flex-grow: 1;
+            padding: 15px 20px;
+            border: 1px solid var(--gray-border);
+            border-radius: var(--radius);
+            font-size: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2e261a;
+            color: var(--white);
+            padding: 60px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-col ul li a {
+            color: #b0b0b0;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--white);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #b0b0b0;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.4rem;
+            }
+            
+            .hero-visual {
+                order: -1;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
+                font-size: 10px;
+            }
+
+        }
+
+        @media (max-width: 768px) {
+            .certification, .courses-selection, .learning-ecosystem, .events {
+                padding: 50px 0;
+            }
+
+            .ecosystem-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .events-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .btn-large {
+                padding: 14px 28px;
+                font-size: 1rem;
+                max-width: 300px;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+                z-index: 99;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            /*.hero-cta {
+                flex-direction: column;
+            }*/
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .cloud-visual{
+                height: 90%;
+            }
+
+            .cloud-visual img{
+                height: 100%;
+                width: 100%;
+                object-fit: contain;
+            }
+            
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+            
+            .stat-number {
+                font-size: 2.5rem;
+            }
+            
+            .cta-content h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 0px 0;
+            }
+            
+            .features, .articles, .testimonials, .faq {
+                padding: 50px 0;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .articles-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .stats {
+                padding: 40px 0;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <img class="iconNavBar" src="./assetes/images/logo-lecloudfacile-4.png" alt="">
+            </a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#">Accueil</a></li>
+                <li><a href="#tutoriels">Tutoriels</a></li>
+                <li><a href="#guides">Guides</a></li>
+                <li><a href="#comparatifs">Comparatifs</a></li>
+                <li><a href="#outils">Outils</a></li>
+                <li><a href="#contact" class="nav-cta">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Démarrez votre carrière dans le <span>Cloud </span>et le <span>DevOps</span></h1>
+                    <p><strong>LeCloudFacile.com</strong> accompagne les particuliers comme les professionnels dans la formation au Cloud. Accédez à nos différents cours et montez en compétences grâce à nos coachs expérimentés</p>
+                    <div class="hero-cta">
+                        <a href="#" class="btn btn-primary">Commencer maintenant</a>
+                        <a href="#" class="btn btn-secondary">Explorer les tutoriels</a>
+                    </div>
+                    <div class="promotion">
+                        <a href="#" class="promoBanner">jusqu’au 19 décembre profiter d’une reduction de 50%</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="cloud-visual">
+                        <img src="./assetes/svg/imageSectionHero.svg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">5,000+</span>
+                    <span class="stat-label">Développeurs formés</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">200+</span>
+                    <span class="stat-label">Tutoriels complets</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">98%</span>
+                    <span class="stat-label">Satisfaction des lecteurs</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">24h</span>
+                    <span class="stat-label">Support réponse maximale</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="tutoriels">
+        <div class="container">
+            <div class="section-title">
+                <h2>Notre approche unique</h2>
+                <p>Nous transformons la complexité technique en savoir accessible grâce à une pédagogie éprouvée</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Pédagogie progressive</h3>
+                    <p>Chaque concept est décomposé en étapes simples avec des analogies concrètes. Pas de jargon inutile, seulement l'essentiel expliqué avec clarté.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Focus résultats</h3>
+                    <p>Nos tutoriels vous guident vers des objectifs concrets : déployer une application, optimiser des coûts, sécuriser un environnement.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Expertise terrain</h3>
+                    <p>Nos contenus sont validés par des architectes cloud certifiés avec 10+ ans d'expérience sur des projets réels.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Articles Section -->
+    <section class="articles" id="guides">
+        <div class="container">
+            <div class="articles-header">
+                <div class="section-title" style="text-align: left; margin-bottom: 0;">
+                    <h2>Nos dernières publications</h2>
+                    <p style="margin-top: 10px;">Du contenu frais et actionnable chaque semaine</p>
+                </div>
+                <a href="#" class="btn btn-secondary">Parcourir les archives</a>
+            </div>
+            
+            <div class="articles-grid">
+                <div class="article-card">
+                    <div class="article-image">
+                        <i class="fab fa-aws"></i>
+                    </div>
+                    <div class="article-content">
+                        <span class="article-category">AWS - Débutant</span>
+                        <h3>Votre premier déploiement sur AWS en 30 minutes chrono</h3>
+                        <p>Guide visuel complet : de la création de compte à l'hébergement de votre premier site web. Screenshots à l'appui pour chaque clic.</p>
+                        <div class="article-meta">
+                            <span><i class="far fa-clock"></i> 18 min de lecture</span>
+                            <span><i class="far fa-calendar"></i> 15 Avril 2024</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="article-card">
+                    <div class="article-image">
+                        <i class="fab fa-microsoft"></i>
+                    </div>
+                    <div class="article-content">
+                        <span class="article-category">Azure - Intermédiaire</span>
+                        <h3>Migration vers Azure : notre checklist ultime</h3>
+                        <p>Évitez les 7 erreurs courantes lors de la migration. Planification, exécution et validation étape par étape.</p>
+                        <div class="article-meta">
+                            <span><i class="far fa-clock"></i> 25 min de lecture</span>
+                            <span><i class="far fa-calendar"></i> 8 Avril 2024</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="article-card">
+                    <div class="article-image">
+                        <i class="fab fa-google"></i>
+                    </div>
+                    <div class="article-content">
+                        <span class="article-category">Google Cloud - Avancé</span>
+                        <h3>Kubernetes sans la migraine : notre config éprouvée</h3>
+                        <p>Configuration optimale pour déploiements stables. Inclut monitoring, scaling automatique et backup automatisé.</p>
+                        <div class="article-meta">
+                            <span><i class="far fa-clock"></i> 22 min de lecture</span>
+                            <span><i class="far fa-calendar"></i> 1 Avril 2024</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AWS Certification Section -->
+    <section class="certification" id="certification">
+        <div class="container">
+            <div class="section-title">
+                <h2>🎓 Devenez certifié AWS Cloud Practitioner</h2>
+                <p>Vous préparez la certification AWS Cloud Practitioner ? Accédez à notre hub complet : ressources, stratégies, retours d'expérience et accompagnement pour passer l'examen avec confiance.</p>
+            </div>
+            <div class="certification-cta">
+                <a href="#" class="btn btn-primary btn-large">Voir le programme de certification</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Selection Section -->
+    <section class="courses-selection">
+        <div class="container">
+            <div class="section-title">
+                <h2>Notre sélection de cours</h2>
+                <p>Nos formations AWS sont conçues à la fois pour les "curieux" et à la fois pour les ingénieurs en charge de fournir des solutions basées sur le cloud : architectes, administrateurs, développeurs et financiers. Devenez expert du Cloud et ajoutez-le à votre CV pour vous démarquer.</p>
+            </div>
+            <div class="courses-cta">
+                <a href="#" class="btn btn-secondary btn-large">Parcourir tous les cours</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Ecosystem Section -->
+    <section class="learning-ecosystem" id="ecosystem">
+        <div class="container">
+            <div class="section-title">
+                <h2>Un écosystème d'apprentissage efficace pour monter en compétence</h2>
+                <p>Apprenez à votre rythme et bénéficiez d'un accès illimité sur mobile et ordinateur de bureau.</p>
+            </div>
+            <div class="ecosystem-grid">
+                <div class="ecosystem-card">
+                    <div class="ecosystem-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3>Cours en ligne</h3>
+                    <p>Apprenez à votre rythme avec des cours de qualité à des prix accessibles ! Nos cours sont régulièrement mis à jour par des instructeurs pour suivre les changements dans l'infrastructure AWS.</p>
+                </div>
+                <div class="ecosystem-card">
+                    <div class="ecosystem-icon">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                    <h3>Cours Vidéos</h3>
+                    <p>Accédez à des cours vidéo à suivre à votre rythme. Des explications claires et des démos pratiques pour comprendre chaque concept.</p>
+                </div>
+                <div class="ecosystem-card">
+                    <div class="ecosystem-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Exercices pratiques</h3>
+                    <p>Entraînez vous et absorbez chaque concept grâce à nos exercices pratiques. Mettez les mains dans le code avec des labs réalistes.</p>
+                </div>
+                <div class="ecosystem-card">
+                    <div class="ecosystem-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Quiz</h3>
+                    <p>Testez vos connaissances acquises avec nos QCM mis à votre disposition à la fin de chaque cours. Validez votre progression.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section class="events" id="events">
+        <div class="container">
+            <div class="section-title">
+                <h2>Prêt à donner un nouvel élan à votre carrière ?</h2>
+                <p>Mettez à jour vos connaissances, développez de nouvelles compétences, obtenez une certification professionnelle… Quel que soit votre projet de carrière, nous sommes là pour vous conseiller et vous accompagner.</p>
+            </div>
+            <div class="events-grid">
+                <div class="events-card">
+                    <div class="events-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3>Nos événements</h3>
+                    <p>Quelque soit votre connaissance, ce MasterClass vous forme au Cloud AWS en partant des bases du Cloud Computing jusqu'au design d'architectures.</p>
+                    <a href="#" class="btn btn-secondary btn-sm">Voir tous les événements</a>
+                </div>
+                <div class="events-card">
+                    <div class="events-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Conseil personnalisé</h3>
+                    <p>Faites-nous part de votre projet de formation, nous sommes là pour vous guider et vous aider à choisir le parcours idéal.</p>
+                    <a href="#" class="btn btn-secondary btn-sm">Contactez-nous</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Ils nous font confiance</h2>
+                <p>Développeurs, startups et entreprises qui ont accéléré leur maîtrise du cloud</p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">"</div>
+                    <p class="testimonial-content">Grâce aux tutoriels LeCloudFacile, j'ai pu passer la certification AWS en 3 mois seulement. Les explications sur les VPC et IAM étaient particulièrement claires.</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">ML</div>
+                        <div class="testimonial-info">
+                            <h4>Marie Lambert</h4>
+                            <p>Développeuse fullstack</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">"</div>
+                    <p class="testimonial-content">Le guide sur l'optimisation des coûts Azure nous a fait économiser 40% sur notre facture cloud. Un ROI immédiat !</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">TC</div>
+                        <div class="testimonial-info">
+                            <h4>Thomas Caron</h4>
+                            <p>CTO, StartupScale</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">"</div>
+                    <p class="testimonial-content">Enfin des ressources en français qui ne sont pas juste des traductions approximatives. Les analogies avec la vie quotidienne rendent tout compréhensible.</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">SG</div>
+                        <div class="testimonial-info">
+                            <h4>Sophie Girard</h4>
+                            <p>Cheffe de projet digital</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="comparatifs">
+        <div class="container">
+            <div class="section-title">
+                <h2>Questions fréquentes</h2>
+                <p>Les réponses à vos interrogations les plus courantes</p>
+            </div>
+            
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Faut-il être développeur pour utiliser vos ressources ?</span>
+                        <i class="fas fa-plus faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolument pas ! Nous avons des parcours dédiés aux chefs de projet, administrateurs système, et même aux décideurs non techniques. Chaque tutoriel indique son niveau de prérequis.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Quelle plateforme cloud recommandez-vous pour débuter ?</span>
+                        <i class="fas fa-plus faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>AWS offre la documentation la plus complète et une couverture géographique étendue. Azure excelle dans les environnements Microsoft existants. Google Cloud brille sur le machine learning. Nous avons un comparatif détaillé pour vous aider à choisir.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Proposez-vous des formations certifiantes ?</span>
+                        <i class="fas fa-plus faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Nos contenus préparent efficacement aux certifications officielles (AWS, Azure, GCP). Bien que nous ne délivrions pas de certification, notre "parcours certification" couvre 100% des domaines d'examen avec des exercices pratiques.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Comment restez-vous à jour avec l'évolution rapide du cloud ?</span>
+                        <i class="fas fa-plus faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Notre équipe suit quotidiennement les annonces des principaux providers. Nous avons un processus de révision trimestriel pour tous nos tutoriels, et nous publions des mises à jour dès que des services évoluent.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Prêt à dompter le cloud ?</h2>
+                <p>Rejoignez notre communauté de 5,000+ professionnels et accélérez votre montée en compétences</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-white">Accéder à tous les tutoriels</a>
+                    <a href="#" class="btn btn-outline-white">Discuter avec un expert</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2>Votre veille cloud simplifiée</h2>
+                <p>Chaque lundi, recevez notre curation : 1 tutoriel, 2 bonnes pratiques, et 3 actualités à ne pas manquer. Concis, utile, 100% cloud.</p>
+                
+                <form class="newsletter-form">
+                    <input type="email" class="newsletter-input" placeholder="Votre adresse professionnelle" required>
+                    <button type="submit" class="btn btn-primary">Recevoir la newsletter</button>
+                </form>
+                <p style="font-size: 0.9rem; margin-top: 15px; color: var(--text-light);">Désinscription à tout moment. Vos données sont protégées.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>LeCloudFacile</h3>
+                    <p style="color: #b0b0b0; line-height: 1.7;">Depuis 2020, nous démocratisons l'expertise cloud pour permettre à chaque professionnel du numérique de libérer son potentiel.</p>
+                    <div style="margin-top: 20px; display: flex; gap: 15px;">
+                        <a href="#" style="color: #b0b0b0; font-size: 1.2rem;"><i class="fab fa-twitter"></i></a>
+                        <a href="#" style="color: #b0b0b0; font-size: 1.2rem;"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" style="color: #b0b0b0; font-size: 1.2rem;"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Parcours d'apprentissage</h3>
+                    <ul>
+                        <li><a href="#">Débutant complet (0 → Cloud)</a></li>
+                        <li><a href="#">Administrateur système</a></li>
+                        <li><a href="#">Développeur d'applications</a></li>
+                        <li><a href">Architecte solutions</a></li>
+                        <li><a href="#">Décideur IT & CFO</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Ressources premium</h3>
+                    <ul>
+                        <li><a href="#">Checklists de déploiement</a></li>
+                        <li><a href="#">Modèles de scripts</a></li>
+                        <li><a href="#">Calculateurs de coûts</a></li>
+                        <li><a href="#">Architectures de référence</a></li>
+                        <li><a href="#">Webinaires exclusifs</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Notre entreprise</h3>
+                    <ul>
+                        <li><a href="#">L'équipe & nos experts</a></li>
+                        <li><a href="#">Méthodologie pédagogique</a></li>
+                        <li><a href="#">Devenir contributeur</a></li>
+                        <li><a href="#">Mentions légales</a></li>
+                        <li><a href="#">Contact presse</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 LeCloudFacile. Tous droits réservés. | Conçu avec <i class="fas fa-heart" style="color: #d7802a;"></i> pour la communauté cloud francophone</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Elements
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const navLinks = document.getElementById('navLinks');
+            const newsletterForm = document.querySelector('.newsletter-form');
+
+            // Safe guards
+            if (mobileMenuBtn && navLinks) {
+                // Accessibility attributes
+                mobileMenuBtn.setAttribute('aria-controls', 'navLinks');
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                navLinks.setAttribute('aria-hidden', 'true');
+                navLinks.setAttribute('role', 'navigation');
+
+                const openMenu = () => {
+                    navLinks.classList.add('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-times"></i>';
+                    mobileMenuBtn.setAttribute('aria-expanded', 'true');
+                    navLinks.setAttribute('aria-hidden', 'false');
+                    // Prevent background scrolling on small screens
+                    document.body.style.overflow = 'hidden';
+                };
+
+                const closeMenu = () => {
+                    navLinks.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                    navLinks.setAttribute('aria-hidden', 'true');
+                    document.body.style.overflow = '';
+                };
+
+                // Toggle button
+                mobileMenuBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    if (navLinks.classList.contains('active')) closeMenu(); else openMenu();
+                });
+
+                // Close when clicking/touching outside header
+                const outsideClickHandler = (event) => {
+                    if (!event.target.closest('.header-container') && navLinks.classList.contains('active')) {
+                        closeMenu();
+                    }
+                };
+
+                document.addEventListener('click', outsideClickHandler);
+                document.addEventListener('touchstart', outsideClickHandler);
+
+                // Close menu on resize when switching to desktop
+                window.addEventListener('resize', () => {
+                    if (window.innerWidth > 768 && navLinks.classList.contains('active')) {
+                        closeMenu();
+                    }
+                });
+
+                // Close with Escape key
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+                        closeMenu();
+                    }
+                });
+
+                // Close when clicking any nav link (works for href="#" as well)
+                navLinks.querySelectorAll('a').forEach(a => {
+                    a.addEventListener('click', () => {
+                        // small delay to allow default link behavior (or smooth scroll) to start,
+                        // but ensure menu is closed immediately for UX
+                        closeMenu();
+                    });
+                });
+            }
+
+            // Newsletter form submission (defensive)
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const emailInput = newsletterForm.querySelector('.newsletter-input');
+                    if (emailInput && emailInput.value) {
+                        alert(`Merci ! Vous recevrez désormais notre newsletter à l'adresse : ${emailInput.value}`);
+                        emailInput.value = '';
+                    }
+                });
+            }
+
+            // FAQ Accordion (defensive)
+            document.querySelectorAll('.faq-question').forEach(question => {
+                question.addEventListener('click', () => {
+                    const answer = question.nextElementSibling;
+                    const isActive = question.classList.contains('active');
+
+                    // Close all other items
+                    document.querySelectorAll('.faq-question').forEach(q => {
+                        q.classList.remove('active');
+                        if (q.nextElementSibling) q.nextElementSibling.classList.remove('active');
+                    });
+
+                    // Toggle this one
+                    if (!isActive) {
+                        question.classList.add('active');
+                        if (answer) answer.classList.add('active');
+                    }
+                });
+            });
+
+            // Smooth scroll for anchor links (improved)
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    // let links with just '#' behave normally (no prevent)
+                    if (targetId === '#') {
+                        // close menu if open
+                        if (navLinks && navLinks.classList.contains('active')) {
+                            // small timeout to let default behavior (jump to top) occur
+                            setTimeout(() => { if (navLinks) navLinks.classList.remove('active'); if (mobileMenuBtn) mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>'; }, 10);
+                        }
+                        return;
+                    }
+
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        e.preventDefault();
+                        const offset = Math.max(0, targetElement.offsetTop - 80);
+                        window.scrollTo({ top: offset, behavior: 'smooth' });
+
+                        // Close mobile menu if open
+                        if (navLinks && navLinks.classList.contains('active')) {
+                            if (typeof closeMenu === 'function') closeMenu();
+                        }
+                    }
+                });
+            });
+
+            // Animate stats counter (more robust)
+            const statNumbers = document.querySelectorAll('.stat-number');
+            if (statNumbers.length) {
+                const observer = new IntersectionObserver((entries, obs) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const stat = entry.target;
+                            // Extract numeric part and suffix
+                            const raw = stat.textContent.trim();
+                            const suffix = raw.replace(/\d+/g, '').trim();
+                            const numeric = parseInt(raw.replace(/[^0-9]/g, ''), 10) || 0;
+                            let current = 0;
+                            const steps = 50;
+                            const increment = Math.max(1, Math.floor(numeric / steps));
+                            const timer = setInterval(() => {
+                                current += increment;
+                                if (current >= numeric) {
+                                    stat.textContent = numeric + suffix;
+                                    clearInterval(timer);
+                                } else {
+                                    stat.textContent = current + suffix;
+                                }
+                            }, 25);
+                            obs.unobserve(stat);
+                        }
+                    });
+                }, { threshold: 0.5 });
+
+                statNumbers.forEach(stat => observer.observe(stat));
+            }
+        });
+    </script>
+</body>
+</html>
